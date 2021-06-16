@@ -1,8 +1,8 @@
 # Prerequisite
 
-1. Install [gqlgen]("https://gqlgen.com/getting-started/") for generating graphql schema
+1. Install gqlgen https://gqlgen.com/getting-started/ for generating graphql schema
 
-2. Install [go-migrate]("https://github.com/golang-migrate/migrate") for running migration
+2. Install go-migrate https://github.com/golang-migrate/migrate for running migration
 
 # gqlgen
 
