@@ -6,5 +6,5 @@ CREATE TABLE products (
     updated_at timestamp DEFAULT NULL
 );
 
-INSERT INTO `db_product_example`.`products` (`id`,`name`,`stock`,`created_at`,`updated_at`)
+INSERT INTO `products` (`id`,`name`,`stock`,`created_at`,`updated_at`)
 VALUES ('1','Logitech G Pro X','10','2021-06-16 16:05:48',null);
