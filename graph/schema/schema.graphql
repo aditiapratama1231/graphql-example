@@ -1,0 +1,14 @@
+#import product.graphql
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+    GetProducts: [Product!]!
+}
+
+type Mutation {
+    CreateProduct(data: CreateProductInput!): Product!
+}
