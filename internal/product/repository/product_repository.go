@@ -1,12 +1,15 @@
 package repository
 
 import (
+	"context"
+
 	"github.com/aditiapratama1231/graphql-example/graph/model"
 	"github.com/jinzhu/gorm"
 )
 
 type ProductRepositoryInterface interface {
-	GetProducts() []*model.Product
+	GetProducts(ctx context.Context) []*model.Product
+	GetSingleProduct(ctx context.Context) *model.Product
 }
 
 type ProductRepository struct {
@@ -19,10 +22,18 @@ func NewProductRepository(db *gorm.DB) ProductRepositoryInterface {
 	}
 }
 
-func (pr ProductRepository) GetProducts() []*model.Product {
+func (pr ProductRepository) GetProducts(ctx context.Context) []*model.Product {
 	var products []*model.Product
 
 	pr.db.Find(&products)
 
 	return products
+}
+
+func (pr ProductRepository) GetSingleProduct(ctx context.Context) *model.Product {
+	product := &model.Product{}
+
+	pr.db.First(product)
+
+	return product
 }

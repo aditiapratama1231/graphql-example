@@ -16,7 +16,15 @@ func (r *mutationResolver) CreateProduct(ctx context.Context, data model.CreateP
 }
 
 func (r *queryResolver) GetProducts(ctx context.Context) ([]*model.Product, error) {
-	return r.ProductResolver.GetProducts(), nil
+	return r.ProductResolver.GetProducts(ctx), nil
+}
+
+func (r *queryResolver) GetProduct(ctx context.Context) (*model.Product, error) {
+	return r.ProductResolver.GetSingleProduct(ctx), nil
+}
+
+func (r *queryResolver) GetBrands(ctx context.Context) ([]*model.Brand, error) {
+	return r.BrandResolver.GetBrands(ctx), nil
 }
 
 // Mutation returns generated.MutationResolver implementation.

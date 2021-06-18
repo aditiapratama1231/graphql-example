@@ -7,6 +7,9 @@ schema {
 
 type Query {
     GetProducts: [Product!]!
+    GetProduct: Product!
+
+    GetBrands: [Brand!]!
 }
 
 type Mutation {
