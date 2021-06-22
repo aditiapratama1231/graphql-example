@@ -8,7 +8,8 @@ require (
 	github.com/google/wire v0.5.0
 	github.com/jinzhu/gorm v1.9.16
 	github.com/joho/godotenv v1.3.0
+	github.com/stretchr/testify v1.7.0
 	github.com/vektah/dataloaden v0.3.0 // indirect
-	github.com/vektah/gqlparser/v2 v2.1.0
+	github.com/vektah/gqlparser/v2 v2.2.0
 	gorm.io/gorm v1.21.11
 )

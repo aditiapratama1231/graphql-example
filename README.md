@@ -30,6 +30,12 @@ migrate create -ext sql -dir migration name
 
 # How To Run
 
+First install, you need to run setup.sh
+
+```
+./setup.sh
+```
+
 Run below command to run app server
 
 ```
