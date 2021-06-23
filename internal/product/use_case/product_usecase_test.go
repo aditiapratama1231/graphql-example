@@ -5,63 +5,43 @@ import (
 	"testing"
 
 	"github.com/aditiapratama1231/graphql-example/graph/model"
+	"github.com/aditiapratama1231/graphql-example/internal/product/repository"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )
 
-type ProductRepositoryMock struct {
-	mock.Mock
-}
+var productRepository = &repository.ProductRepositoryMock{Mock: mock.Mock{}}
+var productUseCase = Product{ProductRepository: productRepository}
 
-func (r ProductRepositoryMock) GetProducts(ctx context.Context) []*model.Product {
-	name := "Lg"
-	stock := 10
-	products := []*model.Product{
-		&model.Product{
-			ID:    "1",
-			Name:  &name,
-			Stock: &stock,
-		},
-		&model.Product{
-			ID:    "2",
-			Name:  &name,
-			Stock: &stock,
-		},
-	}
-
-	return products
-}
-
-func (r ProductRepositoryMock) GetSingleProduct(ctx context.Context) *model.Product {
-	name := "Lg"
-	stock := 10
-	products := model.Product{
+var name = "Lg"
+var stock = 10
+var products = []*model.Product{
+	&model.Product{
 		ID:    "1",
 		Name:  &name,
 		Stock: &stock,
-	}
-
-	return &products
+	},
+	&model.Product{
+		ID:    "2",
+		Name:  &name,
+		Stock: &stock,
+	},
 }
 
-func TestProduct_GetProducts(t *testing.T) {
+func TestProductUseCase_GetProducts(t *testing.T) {
 	ctx := context.Background()
-	name_want := "Lg"
 
-	count_want := 2
+	productRepository.Mock.On("GetProducts", ctx).Return(products)
 
-	repo := ProductRepositoryMock{}
-	repo.On("GetProducts").Return([]*model.Product{})
+	result := productUseCase.GetProducts(ctx)
+	assert.NotNil(t, result)
+}
 
-	product_service := Product{repo}
-	products := product_service.GetProducts(ctx)
+func TestProductUseCase_GetSingleProduct(t *testing.T) {
+	ctx := context.Background()
 
-	for i := range products {
-		assert.Equal(t, products[i].Name, &name_want, "Name must be LG")
-	}
+	productRepository.Mock.On("GetSingleProduct", ctx).Return(products[0])
 
-	if len(products) != count_want {
-		t.Errorf("Products count return %d, expected %d", len(products), count_want)
-	}
-
+	result := productUseCase.GetSingleProduct(ctx)
+	assert.NotNil(t, result)
 }
