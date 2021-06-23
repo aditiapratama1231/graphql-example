@@ -10,23 +10,25 @@ import (
 	"github.com/stretchr/testify/mock"
 )
 
-var productRepository = &repository.ProductRepositoryMock{Mock: mock.Mock{}}
-var productUseCase = Product{ProductRepository: productRepository}
-
-var name = "Lg"
-var stock = 10
-var products = []*model.Product{
-	&model.Product{
-		ID:    "1",
-		Name:  &name,
-		Stock: &stock,
-	},
-	&model.Product{
-		ID:    "2",
-		Name:  &name,
-		Stock: &stock,
-	},
-}
+// Setup
+var (
+	productRepository = &repository.ProductRepositoryMock{Mock: mock.Mock{}}
+	productUseCase    = Product{ProductRepository: productRepository}
+	name              = "Lg"
+	stock             = 10
+	products          = []*model.Product{
+		&model.Product{
+			ID:    "1",
+			Name:  &name,
+			Stock: &stock,
+		},
+		&model.Product{
+			ID:    "2",
+			Name:  &name,
+			Stock: &stock,
+		},
+	}
+)
 
 func TestProductUseCase_GetProducts(t *testing.T) {
 	ctx := context.Background()
