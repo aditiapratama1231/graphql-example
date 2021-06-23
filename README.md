@@ -47,3 +47,10 @@ To access GraphQL Playground
 ```
 http://localhost:8080
 ```
+
+# Unit Test
+Run unit test with below command in root folder
+
+```
+go test -v ./...
+```
